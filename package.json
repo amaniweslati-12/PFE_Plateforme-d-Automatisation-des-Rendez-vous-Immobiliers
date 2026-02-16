@@ -1,0 +1,12 @@
+{
+    "name": "pfe-luxury-real-estate",
+    "version": "1.0.0",
+    "description": "Plateforme d'automatisation des rendez-vous immobiliers (PFE)",
+    "scripts": {
+        "start:backend": "cd backend && npm run dev",
+        "start:frontend": "cd frontend && npm run dev",
+        "install:all": "cd backend && npm install && cd ../frontend && npm install"
+    },
+    "author": "Amani Weslati",
+    "license": "ISC"
+}
