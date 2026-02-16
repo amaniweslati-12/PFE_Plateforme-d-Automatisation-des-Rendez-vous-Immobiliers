@@ -2,10 +2,26 @@
 
 -- Drop tables if they exist (for easy re-running during dev)
 DROP TABLE IF EXISTS conversations;
+
 DROP TABLE IF EXISTS rendez_vous;
+
 DROP TABLE IF EXISTS clients;
+
 DROP TABLE IF EXISTS biens_immobiliers;
+
 DROP TABLE IF EXISTS agents_commerciaux;
+
+DROP TABLE IF EXISTS utilisateurs;
+
+-- 0. Table for Dashboard Users (Admin)
+CREATE TABLE utilisateurs (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    mot_de_passe TEXT NOT NULL,
+    role VARCHAR(50) DEFAULT 'admin',
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 -- 1. Table for Real Estate Agents
 CREATE TABLE agents_commerciaux (
@@ -54,9 +70,9 @@ CREATE TABLE clients (
 -- 4. Table for Appointments (Rendez-vous)
 CREATE TABLE rendez_vous (
     id SERIAL PRIMARY KEY,
-    bien_id INT REFERENCES biens_immobiliers(id) ON DELETE CASCADE,
-    client_id INT REFERENCES clients(id) ON DELETE CASCADE,
-    agent_id INT REFERENCES agents_commerciaux(id) ON DELETE CASCADE,
+    bien_id INT REFERENCES biens_immobiliers (id) ON DELETE CASCADE,
+    client_id INT REFERENCES clients (id) ON DELETE CASCADE,
+    agent_id INT REFERENCES agents_commerciaux (id) ON DELETE CASCADE,
     date_heure TIMESTAMP NOT NULL,
     statut VARCHAR(50) DEFAULT 'Confirmé', -- e.g., 'Confirmé', 'Annulé', 'Terminé'
     notes TEXT,
@@ -66,8 +82,8 @@ CREATE TABLE rendez_vous (
 -- 5. Table for Conversations (History)
 CREATE TABLE conversations (
     id SERIAL PRIMARY KEY,
-    client_id INT REFERENCES clients(id) ON DELETE CASCADE,
-    bien_id INT REFERENCES biens_immobiliers(id) ON DELETE SET NULL,
+    client_id INT REFERENCES clients (id) ON DELETE CASCADE,
+    bien_id INT REFERENCES biens_immobiliers (id) ON DELETE SET NULL,
     messages_json JSONB NOT NULL, -- Store conversation history as JSON
     date_debut TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     date_fin TIMESTAMP,

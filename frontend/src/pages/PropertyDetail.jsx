@@ -14,12 +14,16 @@ const PropertyDetail = () => {
         const fetchProperty = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:5000/api/properties/${id}`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/properties/${id}`);
                 const data = await response.json();
 
                 // Transform data to match component expectations
                 const transformed = {
                     ...data,
+                    title: data.titre,
+                    price: data.prix,
+                    status: data.statut,
+                    amenities: data.commodites || [],
                     location: data.adresse,
                     area: data.surface,
                     bedrooms: data.chambres,

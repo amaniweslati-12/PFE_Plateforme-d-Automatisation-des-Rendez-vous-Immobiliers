@@ -1,4 +1,5 @@
 const { query } = require('./db/index');
+const bcrypt = require('bcryptjs');
 
 const agents = [
     ['Al-Hussain', 'Zaid', 'zaid@example.com', '+971 50 123 4567', 'cal_001', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400'],
@@ -40,6 +41,14 @@ for (let i = 0; i < 25; i++) {
 async function seed() {
     try {
         console.log('Starting seed...');
+
+        // Seed Admin User
+        const hashedPassword = await bcrypt.hash('admin123', 10);
+        await query(
+            'INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES ($1, $2, $3, $4)',
+            ['Admin', 'admin@luxury.com', hashedPassword, 'admin']
+        );
+        console.log('Seeded admin user.');
 
         // Seed Agents
         const agentIds = [];

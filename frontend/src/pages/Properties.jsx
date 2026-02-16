@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import TelegramButton from '../components/TelegramButton';
 import './Properties.css';
@@ -22,10 +22,14 @@ const Properties = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/properties');
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/properties`);
                 const data = await response.json();
                 setPropertiesData(data.map(p => ({
                     ...p,
+                    title: p.titre,
+                    price: p.prix,
+                    status: p.statut,
+                    amenities: p.commodites || [],
                     image: p.photos && p.photos.length > 0 ? p.photos[0] : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
                     location: p.adresse,
                     area: p.surface,
