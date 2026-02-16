@@ -1,0 +1,141 @@
+{
+    "nav": {
+        "home": "Home",
+        "properties": "Properties",
+        "about": "About",
+        "contact": "Contact",
+        "login": "Login",
+        "getStarted": "Get Started"
+    },
+    "hero": {
+        "badge": "Dubai's Premier Real Estate",
+        "title": "Discover Your Dream",
+        "titleGradient": "Luxury Property",
+        "subtitle": "Experience unparalleled elegance in Dubai's most prestigious locations. From waterfront villas to sky-high penthouses.",
+        "exploreBtn": "Explore Properties",
+        "scheduleBtn": "Schedule Viewing"
+    },
+    "stats": {
+        "properties": "Luxury Properties",
+        "clients": "Happy Clients",
+        "experience": "Years Experience"
+    },
+    "featured": {
+        "badge": "Exclusive Listings",
+        "title": "Featured Properties",
+        "subtitle": "Handpicked selection of Dubai's finest luxury real estate",
+        "viewAll": "View All Properties"
+    },
+    "property": {
+        "beds": "Beds",
+        "baths": "Baths",
+        "sqft": "sqft",
+        "price": "Price",
+        "viewDetails": "View Details",
+        "forSale": "For Sale",
+        "favorite": "Add to favorites"
+    },
+    "whyUs": {
+        "badge": "Why Choose Us",
+        "title": "Your Trusted Partner in Luxury Real Estate",
+        "premium": {
+            "title": "Premium Selection",
+            "desc": "Curated portfolio of Dubai's most exclusive properties in prime locations"
+        },
+        "secure": {
+            "title": "Secure Transactions",
+            "desc": "Full legal support and transparent processes for your peace of mind"
+        },
+        "expert": {
+            "title": "Expert Agents",
+            "desc": "Dedicated professionals with deep market knowledge and local expertise"
+        },
+        "fast": {
+            "title": "Fast Service",
+            "desc": "Quick response times and streamlined appointment scheduling"
+        }
+    },
+    "cta": {
+        "title": "Ready to Find Your Dream Property?",
+        "subtitle": "Let our expert agents guide you through Dubai's luxury real estate market",
+        "button": "Get Started Today"
+    },
+    "footer": {
+        "description": "Discover the finest luxury properties in Dubai. Your gateway to exclusive real estate opportunities.",
+        "quickLinks": "Quick Links",
+        "propertyTypes": "Property Types",
+        "contact": "Contact Us",
+        "browse": "Browse Properties",
+        "aboutUs": "About Us",
+        "ourAgents": "Our Agents",
+        "villas": "Luxury Villas",
+        "apartments": "Apartments",
+        "penthouses": "Penthouses",
+        "townhouses": "Townhouses",
+        "rights": "All rights reserved",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+    },
+    "auth": {
+        "welcomeBack": "Welcome Back",
+        "signInSubtitle": "Sign in to access your account",
+        "createAccount": "Create Account",
+        "joinSubtitle": "Join us to discover luxury properties",
+        "email": "Email Address",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "phone": "Phone Number",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "signIn": "Sign In",
+        "signUp": "Create Account",
+        "noAccount": "Don't have an account?",
+        "haveAccount": "Already have an account?",
+        "agreeTerms": "I agree to the",
+        "termsService": "Terms of Service",
+        "and": "and",
+        "privacyPolicy": "Privacy Policy"
+    },
+    "propertiesPage": {
+        "title": "Luxury Properties in Dubai",
+        "subtitle": "Discover your perfect home among our exclusive collection",
+        "filters": "Filter Properties",
+        "resetAll": "Reset All",
+        "search": "Search",
+        "searchPlaceholder": "Search by title or location...",
+        "propertyType": "Property Type",
+        "allTypes": "All Types",
+        "location": "Location",
+        "allLocations": "All Locations",
+        "bedrooms": "Bedrooms",
+        "any": "Any",
+        "priceRange": "Price Range (AED)",
+        "min": "Min",
+        "max": "Max",
+        "to": "to",
+        "found": "properties found",
+        "sortBy": "Sort By",
+        "priceLowHigh": "Price: Low to High",
+        "priceHighLow": "Price: High to Low",
+        "newest": "Newest First",
+        "bedroomsMost": "Bedrooms: Most to Least",
+        "previous": "Previous",
+        "next": "Next"
+    },
+    "locations": {
+        "downtown": "Downtown Dubai",
+        "marina": "Dubai Marina",
+        "palm": "Palm Jumeirah",
+        "hills": "Emirates Hills",
+        "ranches": "Arabian Ranches",
+        "bluewaters": "Bluewaters Island"
+    },
+    "propertyTypes": {
+        "villa": "Villa",
+        "apartment": "Apartment",
+        "penthouse": "Penthouse",
+        "townhouse": "Townhouse"
+    }
+}

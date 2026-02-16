@@ -1,0 +1,41 @@
+/* RTL Support for Arabic */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .hero-content,
+[dir="rtl"] .section-header {
+    text-align: center;
+}
+
+[dir="rtl"] .property-features,
+[dir="rtl"] .hero-actions,
+[dir="rtl"] .nav-links,
+[dir="rtl"] .nav-actions {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .property-footer {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .btn-view {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .btn-view:hover {
+    transform: scaleX(-1) translateX(-5px);
+}
+
+/* Arabic Font Support */
+[lang="ar"] {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}

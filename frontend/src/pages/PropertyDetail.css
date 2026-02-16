@@ -1,0 +1,334 @@
+.property-detail-page {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--color-background);
+}
+
+.breadcrumb {
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.breadcrumb a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.property-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+}
+
+.status-badges {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge.for-sale {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.badge.for-rent {
+    background-color: #0F4C75;
+    color: white;
+}
+
+.badge.type {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.property-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-secondary);
+}
+
+.location {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+}
+
+.price-area {
+    text-align: right;
+}
+
+.price-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.price-value {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+/* Layout */
+.property-content-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--spacing-3xl);
+}
+
+.property-section {
+    margin-bottom: var(--spacing-3xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.property-section:last-child {
+    border-bottom: none;
+}
+
+.property-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-secondary);
+    position: relative;
+    display: inline-block;
+}
+
+.property-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-primary);
+}
+
+.description-text {
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    font-size: 1.125rem;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background-color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.feature-item .icon {
+    font-size: 2rem;
+}
+
+.feature-info .label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.feature-info .value {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+/* Amenities */
+.amenities-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.amenity-tag {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: 500;
+}
+
+.amenity-tag .check {
+    color: var(--color-success);
+    font-weight: 800;
+}
+
+/* Sidebar */
+.sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.agent-card,
+.property-summary {
+    background-color: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-xl);
+    border: 1px solid #F3F4F6;
+}
+
+.agent-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.agent-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.agent-info h4 {
+    margin: 0;
+    font-size: 1.125rem;
+}
+
+.agent-info p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.agent-contact {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background-color: #F9FAFB;
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.property-summary h4 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-surface-dark);
+}
+
+.property-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.property-summary li {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    font-size: 0.9375rem;
+}
+
+.property-summary li span:first-child {
+    color: var(--color-text-secondary);
+}
+
+.property-summary li span:last-child {
+    font-weight: 600;
+}
+
+/* Loading state */
+.loading-container {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--color-primary);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    margin-bottom: var(--spacing-md);
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .property-content-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+
+    .price-area {
+        text-align: left;
+    }
+
+    .property-header h1 {
+        font-size: 1.875rem;
+    }
+}

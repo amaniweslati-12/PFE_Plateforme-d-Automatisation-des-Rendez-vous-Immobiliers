@@ -1,0 +1,141 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "properties": "Propriétés",
+        "about": "À propos",
+        "contact": "Contact",
+        "login": "Connexion",
+        "getStarted": "Commencer"
+    },
+    "hero": {
+        "badge": "L'Immobilier de Premier Choix à Dubaï",
+        "title": "Découvrez Votre",
+        "titleGradient": "Propriété de Luxe",
+        "subtitle": "Vivez une élégance inégalée dans les emplacements les plus prestigieux de Dubaï. Des villas en bord de mer aux penthouses dans le ciel.",
+        "exploreBtn": "Explorer les Propriétés",
+        "scheduleBtn": "Planifier une Visite"
+    },
+    "stats": {
+        "properties": "Propriétés de Luxe",
+        "clients": "Clients Satisfaits",
+        "experience": "Années d'Expérience"
+    },
+    "featured": {
+        "badge": "Annonces Exclusives",
+        "title": "Propriétés en Vedette",
+        "subtitle": "Sélection triée sur le volet du meilleur immobilier de luxe de Dubaï",
+        "viewAll": "Voir Toutes les Propriétés"
+    },
+    "property": {
+        "beds": "Chambres",
+        "baths": "Salles de bain",
+        "sqft": "m²",
+        "price": "Prix",
+        "viewDetails": "Voir les Détails",
+        "forSale": "À Vendre",
+        "favorite": "Ajouter aux favoris"
+    },
+    "whyUs": {
+        "badge": "Pourquoi Nous Choisir",
+        "title": "Votre Partenaire de Confiance en Immobilier de Luxe",
+        "premium": {
+            "title": "Sélection Premium",
+            "desc": "Portfolio sélectionné des propriétés les plus exclusives de Dubaï dans des emplacements de choix"
+        },
+        "secure": {
+            "title": "Transactions Sécurisées",
+            "desc": "Support juridique complet et processus transparents pour votre tranquillité d'esprit"
+        },
+        "expert": {
+            "title": "Agents Experts",
+            "desc": "Professionnels dévoués avec une connaissance approfondie du marché et une expertise locale"
+        },
+        "fast": {
+            "title": "Service Rapide",
+            "desc": "Temps de réponse rapides et planification de rendez-vous simplifiée"
+        }
+    },
+    "cta": {
+        "title": "Prêt à Trouver Votre Propriété de Rêve ?",
+        "subtitle": "Laissez nos agents experts vous guider à travers le marché immobilier de luxe de Dubaï",
+        "button": "Commencer Aujourd'hui"
+    },
+    "footer": {
+        "description": "Découvrez les meilleures propriétés de luxe à Dubaï. Votre porte d'entrée vers des opportunités immobilières exclusives.",
+        "quickLinks": "Liens Rapides",
+        "propertyTypes": "Types de Propriétés",
+        "contact": "Contactez-nous",
+        "browse": "Parcourir les Propriétés",
+        "aboutUs": "À Propos",
+        "ourAgents": "Nos Agents",
+        "villas": "Villas de Luxe",
+        "apartments": "Appartements",
+        "penthouses": "Penthouses",
+        "townhouses": "Maisons de Ville",
+        "rights": "Tous droits réservés",
+        "privacy": "Politique de Confidentialité",
+        "terms": "Conditions d'Utilisation"
+    },
+    "auth": {
+        "welcomeBack": "Bon Retour",
+        "signInSubtitle": "Connectez-vous pour accéder à votre compte",
+        "createAccount": "Créer un Compte",
+        "joinSubtitle": "Rejoignez-nous pour découvrir des propriétés de luxe",
+        "email": "Adresse Email",
+        "password": "Mot de Passe",
+        "confirmPassword": "Confirmer le Mot de Passe",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "phone": "Numéro de Téléphone",
+        "rememberMe": "Se souvenir de moi",
+        "forgotPassword": "Mot de passe oublié ?",
+        "signIn": "Se Connecter",
+        "signUp": "Créer un Compte",
+        "noAccount": "Vous n'avez pas de compte ?",
+        "haveAccount": "Vous avez déjà un compte ?",
+        "agreeTerms": "J'accepte les",
+        "termsService": "Conditions d'Utilisation",
+        "and": "et la",
+        "privacyPolicy": "Politique de Confidentialité"
+    },
+    "propertiesPage": {
+        "title": "Propriétés de Luxe à Dubaï",
+        "subtitle": "Découvrez votre maison parfaite parmi notre collection exclusive",
+        "filters": "Filtrer les Propriétés",
+        "resetAll": "Réinitialiser Tout",
+        "search": "Rechercher",
+        "searchPlaceholder": "Rechercher par titre ou emplacement...",
+        "propertyType": "Type de Propriété",
+        "allTypes": "Tous les Types",
+        "location": "Emplacement",
+        "allLocations": "Tous les Emplacements",
+        "bedrooms": "Chambres",
+        "any": "Tous",
+        "priceRange": "Fourchette de Prix (AED)",
+        "min": "Min",
+        "max": "Max",
+        "to": "à",
+        "found": "propriétés trouvées",
+        "sortBy": "Trier Par",
+        "priceLowHigh": "Prix : Croissant",
+        "priceHighLow": "Prix : Décroissant",
+        "newest": "Plus Récent",
+        "bedroomsMost": "Chambres : Plus à Moins",
+        "previous": "Précédent",
+        "next": "Suivant"
+    },
+    "locations": {
+        "downtown": "Downtown Dubaï",
+        "marina": "Dubaï Marina",
+        "palm": "Palm Jumeirah",
+        "hills": "Emirates Hills",
+        "ranches": "Arabian Ranches",
+        "bluewaters": "Bluewaters Island"
+    },
+    "propertyTypes": {
+        "villa": "Villa",
+        "apartment": "Appartement",
+        "penthouse": "Penthouse",
+        "townhouse": "Maison de Ville"
+    }
+}
