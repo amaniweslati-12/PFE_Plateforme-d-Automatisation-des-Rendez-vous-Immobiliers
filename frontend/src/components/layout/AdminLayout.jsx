@@ -8,7 +8,11 @@ const AdminLayout = () => {
     const user = userJson ? JSON.parse(userJson) : null;
 
     if (!token || !user) {
-        return <Navigate to="/admin/login" />;
+        return <Navigate to="/login" />;
+    }
+
+    if (user.role !== 'admin' && user.email !== 'hadir.ayari@esen.tn') {
+        return <Navigate to="/" />;
     }
 
     const handleLogout = () => {

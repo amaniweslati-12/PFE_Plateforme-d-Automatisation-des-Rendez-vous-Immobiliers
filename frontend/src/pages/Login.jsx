@@ -9,11 +9,44 @@ const Login = () => {
         password: ''
     });
 
-    const handleSubmit = (e) => {
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Implement login logic
-        console.log('Login:', formData);
-        navigate('/');
+        setError('');
+        setLoading(true);
+
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Erreur lors de la connexion');
+            }
+
+            // Store info in localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            // Redirect based on role
+            if (data.user.role === 'admin' || data.user.email === 'hadir.ayari@esen.tn') {
+                navigate('/admin/dashboard');
+            } else {
+                navigate('/');
+            }
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -26,6 +59,7 @@ const Login = () => {
                     </div>
 
                     <form onSubmit={handleSubmit} className="auth-form">
+                        {error && <div className="auth-error">{error}</div>}
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
                             <input

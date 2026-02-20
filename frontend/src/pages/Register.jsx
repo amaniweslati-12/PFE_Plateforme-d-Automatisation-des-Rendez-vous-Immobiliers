@@ -13,11 +13,49 @@ const Register = () => {
         confirmPassword: ''
     });
 
-    const handleSubmit = (e) => {
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Implement registration logic
-        console.log('Register:', formData);
-        navigate('/');
+        setError('');
+
+        if (formData.password !== formData.confirmPassword) {
+            setError('Les mots de passe ne correspondent pas');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nom: `${formData.firstName} ${formData.lastName}`,
+                    email: formData.email,
+                    password: formData.password
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Erreur lors de l\'inscription');
+            }
+
+            // Store info in localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            navigate('/');
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -30,6 +68,7 @@ const Register = () => {
                     </div>
 
                     <form onSubmit={handleSubmit} className="auth-form">
+                        {error && <div className="auth-error">{error}</div>}
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>

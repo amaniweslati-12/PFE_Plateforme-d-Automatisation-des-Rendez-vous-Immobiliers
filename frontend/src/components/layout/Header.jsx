@@ -7,6 +7,14 @@ import './Header.css';
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { t } = useTranslation();
+    const userJson = localStorage.getItem('user');
+    const user = userJson ? JSON.parse(userJson) : null;
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.reload();
+    };
 
     return (
         <header className="header">
@@ -32,8 +40,22 @@ const Header = () => {
                     {/* Auth Buttons & Language Switcher */}
                     <div className="nav-actions">
                         <LanguageSwitcher />
-                        <Link to="/login" className="btn-login">{t('nav.login')}</Link>
-                        <Link to="/register" className="btn btn-primary">{t('nav.getStarted')}</Link>
+                        {user ? (
+                            <>
+                                {(user.role === 'admin' || user.email === 'hadir.ayari@esen.tn') && (
+                                    <Link to="/admin/dashboard" className="nav-link">Admin</Link>
+                                )}
+                                <span className="user-name">{user.nom}</span>
+                                <button onClick={handleLogout} className="btn-login" style={{ cursor: 'pointer', background: 'none', border: 'none' }}>
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login" className="btn-login">{t('nav.login')}</Link>
+                                <Link to="/register" className="btn btn-primary">{t('nav.getStarted')}</Link>
+                            </>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -55,8 +77,20 @@ const Header = () => {
                         <Link to="/contact" className="mobile-link" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
                         <div className="mobile-actions">
                             <LanguageSwitcher />
-                            <Link to="/login" className="btn-login" onClick={() => setIsMenuOpen(false)}>{t('nav.login')}</Link>
-                            <Link to="/register" className="btn btn-primary" onClick={() => setIsMenuOpen(false)}>{t('nav.getStarted')}</Link>
+                            {user ? (
+                                <>
+                                    {(user.role === 'admin' || user.email === 'hadir.ayari@esen.tn') && (
+                                        <Link to="/admin/dashboard" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Admin Dashboard</Link>
+                                    )}
+                                    <span className="mobile-link">{user.nom}</span>
+                                    <button onClick={handleLogout} className="mobile-link" style={{ textAlign: 'left', border: 'none', background: 'none', width: '100%' }}>Logout</button>
+                                </>
+                            ) : (
+                                <>
+                                    <Link to="/login" className="btn-login" onClick={() => setIsMenuOpen(false)}>{t('nav.login')}</Link>
+                                    <Link to="/register" className="btn btn-primary" onClick={() => setIsMenuOpen(false)}>{t('nav.getStarted')}</Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 )}

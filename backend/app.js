@@ -18,6 +18,14 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Routes
+app.get('/', (req, res) => {
+    res.json({
+        message: 'Bienvenue sur l\'API de Dubai Luxury Real Estate',
+        status: 'Online',
+        health_check: '/api/health'
+    });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/agents', agentRoutes);
