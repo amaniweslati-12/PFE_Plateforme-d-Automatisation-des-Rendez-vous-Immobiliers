@@ -7,14 +7,15 @@ import './Header.css';
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { t } = useTranslation();
-    const userJson = localStorage.getItem('user');
-    const user = userJson ? JSON.parse(userJson) : null;
+    const user = JSON.parse(localStorage.getItem('user'));
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.reload();
     };
+
+    const isAdmin = user && (user.role === 'admin' || user.email === 'hadir.ayari@esen.tn');
 
     return (
         <header className="header">
@@ -35,21 +36,19 @@ const Header = () => {
                         <li><Link to="/properties" className="nav-link">{t('nav.properties')}</Link></li>
                         <li><Link to="/about" className="nav-link">{t('nav.about')}</Link></li>
                         <li><Link to="/contact" className="nav-link">{t('nav.contact')}</Link></li>
+                        {isAdmin && (
+                            <li><Link to="/admin/dashboard" className="nav-link" style={{ color: 'var(--color-primary)' }}>Dashboard</Link></li>
+                        )}
                     </ul>
 
                     {/* Auth Buttons & Language Switcher */}
                     <div className="nav-actions">
                         <LanguageSwitcher />
                         {user ? (
-                            <>
-                                {(user.role === 'admin' || user.email === 'hadir.ayari@esen.tn') && (
-                                    <Link to="/admin/dashboard" className="nav-link">Admin</Link>
-                                )}
-                                <span className="user-name">{user.nom}</span>
-                                <button onClick={handleLogout} className="btn-login" style={{ cursor: 'pointer', background: 'none', border: 'none' }}>
-                                    Logout
-                                </button>
-                            </>
+                            <div className="user-nav">
+                                <span className="user-name">Hello, {user.nom.split(' ')[0]}</span>
+                                <button onClick={handleLogout} className="btn-logout">Logout</button>
+                            </div>
                         ) : (
                             <>
                                 <Link to="/login" className="btn-login">{t('nav.login')}</Link>
@@ -73,18 +72,13 @@ const Header = () => {
                     <div className="mobile-menu">
                         <Link to="/" className="mobile-link" onClick={() => setIsMenuOpen(false)}>{t('nav.home')}</Link>
                         <Link to="/properties" className="mobile-link" onClick={() => setIsMenuOpen(false)}>{t('nav.properties')}</Link>
-                        <Link to="/about" className="mobile-link" onClick={() => setIsMenuOpen(false)}>{t('nav.about')}</Link>
-                        <Link to="/contact" className="mobile-link" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
+                        {isAdmin && (
+                            <Link to="/admin" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Dashboard Admin</Link>
+                        )}
                         <div className="mobile-actions">
                             <LanguageSwitcher />
                             {user ? (
-                                <>
-                                    {(user.role === 'admin' || user.email === 'hadir.ayari@esen.tn') && (
-                                        <Link to="/admin/dashboard" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Admin Dashboard</Link>
-                                    )}
-                                    <span className="mobile-link">{user.nom}</span>
-                                    <button onClick={handleLogout} className="mobile-link" style={{ textAlign: 'left', border: 'none', background: 'none', width: '100%' }}>Logout</button>
-                                </>
+                                <button onClick={handleLogout} className="btn-logout">Logout</button>
                             ) : (
                                 <>
                                     <Link to="/login" className="btn-login" onClick={() => setIsMenuOpen(false)}>{t('nav.login')}</Link>

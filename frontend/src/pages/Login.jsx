@@ -32,11 +32,13 @@ const Login = () => {
                 throw new Error(data.message || 'Erreur lors de la connexion');
             }
 
-            // Store info in localStorage
+            // Store token and user info
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
 
-            // Redirect based on role
+            console.log('Login successful:', data);
+
+            // Role-based redirection - merging both checks
             if (data.user.role === 'admin' || data.user.email === 'hadir.ayari@esen.tn') {
                 navigate('/admin/dashboard');
             } else {
@@ -60,6 +62,7 @@ const Login = () => {
 
                     <form onSubmit={handleSubmit} className="auth-form">
                         {error && <div className="auth-error">{error}</div>}
+
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
                             <input
@@ -94,8 +97,12 @@ const Login = () => {
                             </Link>
                         </div>
 
-                        <button type="submit" className="btn btn-primary btn-large auth-submit">
-                            Sign In
+                        <button
+                            type="submit"
+                            className="btn btn-primary btn-large auth-submit"
+                            disabled={loading}
+                        >
+                            {loading ? 'Signing In...' : 'Sign In'}
                         </button>
                     </form>
 

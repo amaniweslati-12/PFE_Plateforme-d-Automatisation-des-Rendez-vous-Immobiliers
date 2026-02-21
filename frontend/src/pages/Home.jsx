@@ -109,7 +109,14 @@ const Home = () => {
                         {featuredProperties.map(property => (
                             <div key={property.id} className="property-card">
                                 <div className="property-image">
-                                    <img src={property.image} alt={property.title} />
+                                    <img
+                                        src={property.image}
+                                        alt={property.title}
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80';
+                                        }}
+                                    />
                                     <div className="property-badge">{property.type}</div>
                                     <button className="property-favorite" aria-label={t('property.favorite')}>
                                         ♡

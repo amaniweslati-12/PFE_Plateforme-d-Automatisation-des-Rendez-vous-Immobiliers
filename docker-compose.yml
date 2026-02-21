@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: pfe-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-amani}
+      POSTGRES_DB: ${DB_DATABASE:-pfe_real_estate}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  backend:
+    build: ./backend
+    container_name: pfe-backend
+    ports:
+      - "5001:5000"
+    environment:
+      DB_USER: ${DB_USER:-postgres}
+      DB_HOST: db
+      DB_DATABASE: ${DB_DATABASE:-pfe_real_estate}
+      DB_PASSWORD: ${DB_PASSWORD:-amani}
+      DB_PORT: 5432
+      JWT_SECRET: ${JWT_SECRET:-pfe_luxury_real_estate_secret_2026}
+      PORT: 5000
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: pfe-frontend
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

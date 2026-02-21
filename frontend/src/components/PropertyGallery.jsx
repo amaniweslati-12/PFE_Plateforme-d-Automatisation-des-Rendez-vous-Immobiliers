@@ -21,6 +21,10 @@ const PropertyGallery = ({ images }) => {
                     alt={`Property image ${activeIndex + 1}`}
                     className="main-image"
                     onClick={() => setIsLightboxOpen(true)}
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80';
+                    }}
                 />
                 <div className="gallery-nav">
                     <button className="nav-btn prev" onClick={prevImage}>❮</button>
@@ -38,7 +42,14 @@ const PropertyGallery = ({ images }) => {
                         className={`thumbnail ${index === activeIndex ? 'active' : ''}`}
                         onClick={() => setActiveIndex(index)}
                     >
-                        <img src={image} alt={`Thumbnail ${index + 1}`} />
+                        <img
+                            src={image}
+                            alt={`Thumbnail ${index + 1}`}
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&q=80';
+                            }}
+                        />
                     </div>
                 ))}
             </div>

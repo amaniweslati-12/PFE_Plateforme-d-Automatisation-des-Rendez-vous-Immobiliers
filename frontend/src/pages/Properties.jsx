@@ -24,19 +24,30 @@ const Properties = () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/properties`);
                 const data = await response.json();
-                setPropertiesData(data.map(p => ({
-                    ...p,
-                    title: p.titre,
-                    price: p.prix,
-                    status: p.statut,
-                    amenities: p.commodites || [],
-                    image: p.photos && p.photos.length > 0 ? p.photos[0] : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-                    location: p.adresse,
-                    area: p.surface,
-                    bedrooms: p.chambres,
-                    bathrooms: p.salles_de_bain,
-                    date: p.date_creation
-                })));
+                const parseArray = (val) => {
+                    if (Array.isArray(val)) return val;
+                    if (typeof val === 'string') return val.split(',').map(s => s.trim());
+                    return [];
+                };
+
+                setPropertiesData(data.map(p => {
+                    const photos = parseArray(p.photos);
+                    const amenities = parseArray(p.amenities);
+                    return {
+                        ...p,
+                        title: p.titre || 'Propriété',
+                        price: parseFloat(p.prix) || 0,
+                        status: p.statut || 'For Sale',
+                        amenities: amenities,
+                        image: (photos.length > 0 && photos[0]) ? photos[0] : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+                        location: p.adresse || 'Dubai',
+                        area: p.surface || 0,
+                        bedrooms: p.chambres || 0,
+                        bathrooms: p.salles_de_bain || 0,
+                        date: p.date_creation
+                    };
+                }));
+
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching properties:', error);
@@ -229,7 +240,15 @@ const Properties = () => {
                                 {filteredProperties.map(property => (
                                     <div key={property.id} className="property-card">
                                         <div className="property-image">
-                                            <img src={property.image} alt={property.title} loading="lazy" />
+                                            <img
+                                                src={property.image}
+                                                alt={property.title}
+                                                loading="lazy"
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80';
+                                                }}
+                                            />
                                             <div className="property-badge">{property.type}</div>
                                             <div className={`property-status ${property.status?.toLowerCase().replace(' ', '-')}`}>
                                                 {property.status}

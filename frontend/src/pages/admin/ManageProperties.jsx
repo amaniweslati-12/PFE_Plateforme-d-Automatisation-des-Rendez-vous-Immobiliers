@@ -8,14 +8,15 @@ const ManageProperties = () => {
     const [editingProp, setEditingProp] = useState(null);
     const [formData, setFormData] = useState({
         titre: '',
+        description: '',
         type: 'Villa',
         prix: '',
         surface: '',
         adresse: '',
-        chambres: '',
-        salles_de_bain: '',
         chambres: 0,
-        salles_de_bain: 0
+        salles_de_bain: 0,
+        amenities: [],
+        agent_id: ''
     });
 
     const token = localStorage.getItem('token');
@@ -136,9 +137,17 @@ const ManageProperties = () => {
                         <h2>{editingProp ? 'Modifier' : 'Ajouter'} un bien</h2>
                         <form onSubmit={handleSubmit}>
                             <div className="form-grid">
-                                <div className="form-group">
+                                <div className="form-group full-width">
                                     <label>Titre</label>
                                     <input type="text" value={formData.titre} onChange={e => setFormData({ ...formData, titre: e.target.value })} required />
+                                </div>
+                                <div className="form-group full-width">
+                                    <label>Description</label>
+                                    <textarea
+                                        value={formData.description}
+                                        onChange={e => setFormData({ ...formData, description: e.target.value })}
+                                        rows="3"
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label>Type</label>
@@ -150,12 +159,28 @@ const ManageProperties = () => {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label>Prix</label>
+                                    <label>Prix (AED)</label>
                                     <input type="number" value={formData.prix} onChange={e => setFormData({ ...formData, prix: e.target.value })} required />
                                 </div>
                                 <div className="form-group">
                                     <label>Surface (sqft)</label>
                                     <input type="number" value={formData.surface} onChange={e => setFormData({ ...formData, surface: e.target.value })} />
+                                </div>
+                                <div className="form-group">
+                                    <label>Chambres</label>
+                                    <input type="number" value={formData.chambres} onChange={e => setFormData({ ...formData, chambres: parseInt(e.target.value) || 0 })} />
+                                </div>
+                                <div className="form-group">
+                                    <label>Salles de bain</label>
+                                    <input type="number" value={formData.salles_de_bain} onChange={e => setFormData({ ...formData, salles_de_bain: parseInt(e.target.value) || 0 })} />
+                                </div>
+                                <div className="form-group">
+                                    <label>Chambres</label>
+                                    <input type="number" value={formData.chambres} onChange={e => setFormData({ ...formData, chambres: parseInt(e.target.value) || 0 })} />
+                                </div>
+                                <div className="form-group">
+                                    <label>Salles de bain</label>
+                                    <input type="number" value={formData.salles_de_bain} onChange={e => setFormData({ ...formData, salles_de_bain: parseInt(e.target.value) || 0 })} />
                                 </div>
                                 <div className="form-group full-width">
                                     <label>Adresse</label>

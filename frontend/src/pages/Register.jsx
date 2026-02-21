@@ -18,13 +18,13 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
 
         if (formData.password !== formData.confirmPassword) {
             setError('Les mots de passe ne correspondent pas');
             return;
         }
 
+        setError('');
         setLoading(true);
 
         try {
@@ -46,11 +46,10 @@ const Register = () => {
                 throw new Error(data.message || 'Erreur lors de l\'inscription');
             }
 
-            // Store info in localStorage
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
-
-            navigate('/');
+            console.log('Registration successful:', data);
+            setError('');
+            alert('Compte créé avec succès ! Vous pouvez maintenant vous connecter.');
+            navigate('/login');
         } catch (err) {
             setError(err.message);
         } finally {
@@ -69,6 +68,7 @@ const Register = () => {
 
                     <form onSubmit={handleSubmit} className="auth-form">
                         {error && <div className="auth-error">{error}</div>}
+
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>
@@ -148,8 +148,12 @@ const Register = () => {
                             <span>I agree to the <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link></span>
                         </label>
 
-                        <button type="submit" className="btn btn-primary btn-large auth-submit">
-                            Create Account
+                        <button
+                            type="submit"
+                            className="btn btn-primary btn-large auth-submit"
+                            disabled={loading}
+                        >
+                            {loading ? 'Creating Account...' : 'Create Account'}
                         </button>
                     </form>
 

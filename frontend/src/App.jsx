@@ -8,6 +8,8 @@ const Properties = lazy(() => import('./pages/Properties'));
 const PropertyDetail = lazy(() => import('./pages/PropertyDetail'));
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 // Admin Dashboard Pages
 const AdminLayout = lazy(() => import('./components/layout/AdminLayout'));
@@ -40,6 +42,8 @@ function App() {
                             <Route path="/properties/:id" element={<PropertyDetail />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contact" element={<Contact />} />
                         </Route>
 
                         {/* Admin Dashboard Routes */}

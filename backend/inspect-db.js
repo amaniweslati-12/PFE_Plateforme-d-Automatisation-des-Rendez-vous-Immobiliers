@@ -1,36 +1,38 @@
-const { pool } = require('./db/index');
-require('dotenv').config();
+const { Client } = require('pg');
 
 async function inspect() {
-    try {
-        console.log('--- Full Database Inspection ---');
+    const config = {
+        user: 'postgres',
+        host: 'localhost',
+        database: 'pfe_real_estate',
+        password: 'amani',
+        port: 5433
+    };
 
-        // 1. Check tables
-        const tables = await pool.query(`
+    const client = new Client(config);
+
+    try {
+        await client.connect();
+
+        const tablesRes = await client.query(`
             SELECT table_name 
             FROM information_schema.tables 
             WHERE table_schema = 'public'
         `);
+        console.log('\n--- FINAL TABLE LIST ---');
+        console.log(tablesRes.rows.map(r => r.table_name).sort());
 
-        for (const table of tables.rows) {
-            const tableName = table.table_name;
-            const count = await pool.query(`SELECT COUNT(*) FROM ${tableName}`);
-            const columns = await pool.query(`
-                SELECT column_name, data_type 
-                FROM information_schema.columns 
-                WHERE table_name = '${tableName}'
-            `);
+        const roleRes = await client.query(`
+            SELECT role, count(*) 
+            FROM utilisateurs 
+            GROUP BY role
+        `);
+        console.log('\n--- ROLE COUNTS ---');
+        console.table(roleRes.rows);
 
-            console.log(`\nTable: ${tableName} (${count.rows[0].count} rows)`);
-            columns.rows.forEach(col => {
-                console.log(` - ${col.column_name}: ${col.data_type}`);
-            });
-        }
-
-        process.exit(0);
+        await client.end();
     } catch (err) {
-        console.error('Inspection failed:', err.message);
-        process.exit(1);
+        console.error('ERROR:', err.message);
     }
 }
 

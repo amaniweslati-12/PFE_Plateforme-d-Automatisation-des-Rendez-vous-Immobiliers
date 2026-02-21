@@ -12,7 +12,14 @@ const appointmentRoutes = require('./routes/appointmentRoutes');
 const app = express();
 
 // Middleware
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+            "img-src": ["'self'", "data:", "https://images.unsplash.com", "https://plus.unsplash.com"],
+        },
+    },
+}));
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));

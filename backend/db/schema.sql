@@ -1,38 +1,31 @@
--- Database Schema for Real Estate Automation Platform
+-- Database Schema for Real Estate Automation Platform (Unified Version)
 
--- Drop tables if they exist (for easy re-running during dev)
-DROP TABLE IF EXISTS conversations;
+-- Drop tables if they exist (including legacy tables)
+DROP TABLE IF EXISTS conversations CASCADE;
 
-DROP TABLE IF EXISTS rendez_vous;
+DROP TABLE IF EXISTS rendez_vous CASCADE;
 
-DROP TABLE IF EXISTS clients;
+DROP TABLE IF EXISTS biens_immobiliers CASCADE;
 
-DROP TABLE IF EXISTS biens_immobiliers;
+DROP TABLE IF EXISTS agents_commerciaux CASCADE;
 
-DROP TABLE IF EXISTS agents_commerciaux;
+DROP TABLE IF EXISTS clients CASCADE;
 
-DROP TABLE IF EXISTS utilisateurs;
+DROP TABLE IF EXISTS utilisateurs CASCADE;
 
--- 0. Table for Dashboard Users (Admin)
+-- 1. Unified Table for all Users (Admin, Agent, Client)
 CREATE TABLE utilisateurs (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    email VARCHAR(150) UNIQUE NOT NULL,
-    mot_de_passe TEXT NOT NULL,
-    role VARCHAR(50) DEFAULT 'admin',
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- 1. Table for Real Estate Agents
-CREATE TABLE agents_commerciaux (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
+    mot_de_passe TEXT NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'client', -- 'admin', 'agent', 'client'
     telephone VARCHAR(20),
-    calendar_id VARCHAR(100), -- For Google Calendar integration
+    photo_url TEXT, -- For agents/admins
+    telegram_id VARCHAR(100) UNIQUE, -- For clients
+    calendar_id VARCHAR(100), -- For agents (Google Calendar)
     actif BOOLEAN DEFAULT TRUE,
-    photo_url TEXT,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -52,37 +45,27 @@ CREATE TABLE biens_immobiliers (
     chambres INT,
     salles_de_bain INT,
     annee_construction INT,
-    agent_id INT REFERENCES agents_commerciaux(id) ON DELETE SET NULL,
+    agent_id INT REFERENCES utilisateurs(id) ON DELETE SET NULL, -- References a user with role 'agent'
     statut VARCHAR(50) DEFAULT 'Disponible', -- e.g., 'Disponible', 'Vendu', 'Loué'
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3. Table for Clients (Prospects)
-CREATE TABLE clients (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(200) NOT NULL,
-    telephone VARCHAR(20),
-    email VARCHAR(150) UNIQUE,
-    telegram_id VARCHAR(100) UNIQUE,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- 4. Table for Appointments (Rendez-vous)
+-- 3. Table for Appointments (Rendez-vous)
 CREATE TABLE rendez_vous (
     id SERIAL PRIMARY KEY,
     bien_id INT REFERENCES biens_immobiliers (id) ON DELETE CASCADE,
-    client_id INT REFERENCES clients (id) ON DELETE CASCADE,
-    agent_id INT REFERENCES agents_commerciaux (id) ON DELETE CASCADE,
+    client_id INT REFERENCES utilisateurs (id) ON DELETE CASCADE, -- References user with role 'client'
+    agent_id INT REFERENCES utilisateurs (id) ON DELETE CASCADE, -- References user with role 'agent'
     date_heure TIMESTAMP NOT NULL,
     statut VARCHAR(50) DEFAULT 'Confirmé', -- e.g., 'Confirmé', 'Annulé', 'Terminé'
     notes TEXT,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 5. Table for Conversations (History)
+-- 4. Table for Conversations (History)
 CREATE TABLE conversations (
     id SERIAL PRIMARY KEY,
-    client_id INT REFERENCES clients (id) ON DELETE CASCADE,
+    client_id INT REFERENCES utilisateurs (id) ON DELETE CASCADE, -- References user with role 'client'
     bien_id INT REFERENCES biens_immobiliers (id) ON DELETE SET NULL,
     messages_json JSONB NOT NULL, -- Store conversation history as JSON
     date_debut TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
