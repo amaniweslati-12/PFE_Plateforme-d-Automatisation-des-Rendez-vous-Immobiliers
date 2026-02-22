@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const propertyRoutes = require('./routes/propertyRoutes');
 const agentRoutes = require('./routes/agentRoutes');
 const appointmentRoutes = require('./routes/appointmentRoutes');
+const rdvRoutes = require('./routes/rdvRoutes');
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/agents', agentRoutes);
 app.use('/api/appointments', appointmentRoutes);
+app.use('/api/rdv', rdvRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
